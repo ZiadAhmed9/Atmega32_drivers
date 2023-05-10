@@ -1,7 +1,7 @@
 #ifndef DIO_INTERFACE_H_
 #define DIO_INTERFACE_H_
 
-
+#include <StdTypes.h>
 
 typedef enum{
 	PA=0,
@@ -60,16 +60,15 @@ typedef enum{
 
 void DIO_Init(void);
 
+void DIO_InitPortPin(DIO_Port_type port,u8 pin_num,DIO_PinStatus_type status);
 
+void DIO_WritePortPin(DIO_Port_type port,u8 pin_num,DIO_PinVoltage_type volt);
 
-void DIO_InitPin(DIO_Port_type port,u8 pin_num,DIO_PinStatus_type status);
+void DIO_WritePin(DIO_Pin_type pin,DIO_PinVoltage_type volt);
 
-void DIO_WritePin(DIO_Port_type port,u8 pin_num,DIO_PinVoltage_type volt);
+void DIO_TogglePin(DIO_Pin_type pin);
 
-DIO_PinVoltage_type DIO_ReadPin(DIO_Port_type port,u8 pin_num);
-
-
-
+DIO_PinVoltage_type DIO_ReadPin(DIO_Pin_type pin);
 
 
 #endif /* DIO_INTERFACE_H_ */
