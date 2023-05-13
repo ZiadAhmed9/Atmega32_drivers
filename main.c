@@ -11,17 +11,15 @@
 #include <util/delay.h>
 #include "DIO_Interface.h"
 #include "Motor_Interface.h"
+#include "ADC_Interface.h"
 int main(void)
 {
+	ADC_Init(VREF_AREF,ADC_SCALER_64);
 	DIO_Init();
+	u16 x;
     while (1) 
     {
-		MOTOR_CW(M1);
-				MOTOR_CW(M2);
-
-		_delay_ms(3000);
-		MOTOR_CCW(M1);
-		_delay_ms(3000);
+		x=ADC_Read(CH_0);
     }
 }
 

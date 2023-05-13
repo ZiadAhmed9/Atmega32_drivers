@@ -12,7 +12,7 @@ const DIO_PinStatus_type PinsStatusArray[TOTAL_PINS]={
 	OUTPUT,
 	OUTPUT,
 	OUTPUT,
-	OUTPUT,
+	OUTPUT, 
 	OUTPUT,
 	OUTPUT,
 	OUTPUT,
@@ -41,4 +41,4 @@ const DIO_PinStatus_type PinsStatusArray[TOTAL_PINS]={
 	OUTPUT,
 	OUTPUT,
 	OUTPUT
-};
+	};
