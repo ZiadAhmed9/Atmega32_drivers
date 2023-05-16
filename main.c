@@ -12,14 +12,24 @@
 #include "DIO_Interface.h"
 #include "Motor_Interface.h"
 #include "ADC_Interface.h"
+#include "EX_Interrupt.h"
+
+void f1(void)
+{
+	DIO_TogglePin(PINC0);
+}
 int main(void)
 {
 	ADC_Init(VREF_AREF,ADC_SCALER_64);
 	DIO_Init();
-	u16 x;
+	EXI_Init();
+	EXI_Enable(EX_INT2);
+	sei();
+	EXI_SetCallBack(EX_INT2,f1);
     while (1) 
     {
-		x=ADC_Read(CH_0);
+			
+
     }
 }
 

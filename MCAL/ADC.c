@@ -51,11 +51,16 @@ void ADC_Init(ADC_Voltage_type vref,ADC_Prescaler_type scaler)
 u16 ADC_Read(ADC_Channel_type channel)
 {
 	//Select the channel using the mux
-	
+	ADMUX=ADMUX&0Xe0;
+	ADMUX|=channel;
 	/*start conversion*/
-	
+	SET_BIT(ADCSRA,ADSC);
 	/* Wait till end */
-	
+	while(READ_BIT(ADCSRA,ADSC));  //blocking condition, wait until adsc is zero
 	/* get reading from 2 registers ADCH and ADCL*/
-	
+	//We must read the high first then the low
+	//ADC LOW AND ADC HIGH ARE HAVE addresses 0x25 and 0x24
+	return ADC; //this way the function returns both 8 bits registers as ADC is a register defined as 0x24 adoing this will allow it to take both values
 }
+
+

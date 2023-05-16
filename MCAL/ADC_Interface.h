@@ -40,5 +40,7 @@ void ADC_Init(ADC_Voltage_type vref,ADC_Prescaler_type scaler);
 
 u16 ADC_Read(ADC_Channel_type channel);
 
+u16 ADC_ReadVolt(ADC_Channel_type channel);
+
 
 #endif /* ADC_INTERFACE_H_ */
