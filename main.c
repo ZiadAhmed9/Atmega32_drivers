@@ -13,19 +13,31 @@
 #include "Motor_Interface.h"
 #include "ADC_Interface.h"
 #include "EX_Interrupt.h"
+#include "Timers.h"
 
 void f1(void)
 {
-	DIO_TogglePin(PINC0);
+	
 }
 int main(void)
 {
-	ADC_Init(VREF_AREF,ADC_SCALER_64);
 	DIO_Init();
 	EXI_Init();
 	EXI_Enable(EX_INT2);
 	sei();
-	EXI_SetCallBack(EX_INT2,f1);
+	TIMER0_Init(TIMER0_FASTPWM_MODE,TIMER0_SCALER_8);
+	TIMER0_OC0Mode(OC0_NON_INVERTING);
+	Timer1_Init(TIMER1_FASTPWM_ICR_TOP_MODE,TIMER1_SCALER_8);
+	Timer1_OCRA1Mode(OCRA_NON_INVERTING);
+	Timer1_OCRB1Mode(OCRB_NON_INVERTING);
+	TIMER2_Init(TIMER2_FASTPWM_MODE,TIMER2_SCALER_8);
+	TIMER2_OC0Mode(OC0_NON_INVERTING);
+	OCR0=64;
+	ICR1=1000;
+	OCR1A=500;
+	OCR1B=500;
+	OCR2=64;
+
     while (1) 
     {
 			

@@ -27,7 +27,6 @@ void EXI_Enable(ExInterruptSource_type Interrupt)
 		SET_BIT(GICR,INT2);
 		break;	
 	}
-	
 }
 
 void EXI_Disable(ExInterruptSource_type Interrupt)
