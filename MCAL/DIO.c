@@ -316,6 +316,29 @@ void DIO_TogglePin(DIO_Pin_type pin)
 		break;
 	}
 }
+void DIO_WritePort(DIO_Port_type port,u8 value)
+{
+	switch(port)
+	{
+		case PA:
+		PORTA=value;
+		
+		break;
+		case PB:
+		PORTB=value;
+		break;
+		case PC:
+		PORTC=value;
+		break;
+		case PD:
+		PORTD=value;
+		break;
+	}
+	
+	
+	
+}
+
 
 
 

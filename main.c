@@ -14,34 +14,37 @@
 #include "ADC_Interface.h"
 #include "EX_Interrupt.h"
 #include "Timers.h"
+#include "UART.h"
 
-void f1(void)
+volatile u8 rec_data[20],flag=0;
+
+void f1(void)	//save  the data received each byte in a stack like
 {
-	
+	static u8 i=0;
+	rec_data[i]=UART_ReceiveNoBlock();
+	flag++;
+	i++;
 }
 int main(void)
 {
 	DIO_Init();
 	EXI_Init();
 	EXI_Enable(EX_INT2);
+	UART_init();
 	sei();
-	TIMER0_Init(TIMER0_FASTPWM_MODE,TIMER0_SCALER_8);
-	TIMER0_OC0Mode(OC0_NON_INVERTING);
-	Timer1_Init(TIMER1_FASTPWM_ICR_TOP_MODE,TIMER1_SCALER_8);
-	Timer1_OCRA1Mode(OCRA_NON_INVERTING);
-	Timer1_OCRB1Mode(OCRB_NON_INVERTING);
-	TIMER2_Init(TIMER2_FASTPWM_MODE,TIMER2_SCALER_8);
-	TIMER2_OC0Mode(OC0_NON_INVERTING);
-	OCR0=64;
-	ICR1=1000;
-	OCR1A=500;
-	OCR1B=500;
-	OCR2=64;
+
 
     while (1) 
     {
+			UART_SendStringAsynch("ZIAD");
+			_delay_ms(3000);
+			UART_SendStringAsynch("Ahmed");
 			
-
+			if(flag>0)
+			{
+			// write here the condition to be executed when an interrupt is done
+			flag--;	
+			}
     }
 }
 

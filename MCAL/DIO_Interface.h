@@ -70,5 +70,6 @@ void DIO_TogglePin(DIO_Pin_type pin);
 
 DIO_PinVoltage_type DIO_ReadPin(DIO_Pin_type pin);
 
+void DIO_WritePort(DIO_Port_type port,u8 value);
 
 #endif /* DIO_INTERFACE_H_ */
